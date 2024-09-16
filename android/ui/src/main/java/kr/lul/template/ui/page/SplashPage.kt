@@ -32,7 +32,7 @@ fun SplashPage(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Android Template Sample",
+            text = "KMP Template Sample",
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.displayLarge
