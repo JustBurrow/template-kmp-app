@@ -2,9 +2,8 @@ package kr.lul.template.model
 
 import android.util.Log
 import kr.lul.template.domain.SampleData
-import javax.inject.Inject
 
-class SampleModelImpl @Inject constructor() : SampleModel {
+class SampleModelImpl : SampleModel {
     companion object {
         private const val TAG = "SampleModelImpl"
     }

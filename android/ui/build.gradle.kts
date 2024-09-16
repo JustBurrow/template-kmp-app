@@ -1,12 +1,13 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "kr.lul.template.viewmodel"
+    namespace = "kr.lul.template.ui"
     compileSdk = 34
 
     defaultConfig {
@@ -34,21 +35,29 @@ android {
 }
 
 dependencies {
-    api(projects.uiState)
-
-    implementation(projects.model)
+    implementation(projects.android.viewmodel)
 
     // module graph 시작.
-    implementation(projects.domain) // model
+    implementation(projects.android.uiState) // viewmodel
     // module graph 끝.
 
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.core)
-    implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.hilt)
+    implementation(libs.hilt.navigation.compose)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
 
     ksp(libs.hilt.compiler)
 
-    testImplementation(libs.junit)
+    debugImplementation(libs.androidx.ui.test.manifest)
+    debugImplementation(libs.androidx.ui.tooling)
 
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
 }

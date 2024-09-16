@@ -1,10 +1,12 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "kr.lul.template.domain"
+    namespace = "kr.lul.template.viewmodel"
     compileSdk = 34
 
     defaultConfig {
@@ -32,9 +34,21 @@ android {
 }
 
 dependencies {
-    api(libs.kr.lul.semantic.version)
+    api(projects.android.uiState)
+
+    implementation(projects.shared.model)
+
+    // module graph 시작.
+    implementation(projects.shared.domain) // model
+    // module graph 끝.
 
     implementation(libs.androidx.core)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.hilt)
+
+    ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)
+
+    androidTestImplementation(libs.androidx.junit)
 }
